@@ -8,5 +8,5 @@ error() {
 
 quit() {
   echo "$1"
+  exit "$2"
 }
-
