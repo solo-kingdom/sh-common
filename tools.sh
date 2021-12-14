@@ -28,7 +28,7 @@ get_cpu_num() {
     if [[ "$os" == "darwin" ]]; then
         echo "$(sysctl hw.logicalcpu | cut -d ' ' -f2)"
     elif [[ "$os" == "linux" ]]; then 
-        echo "$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}')"
+        echo "$(grep ^cpu\\scores /proc/cpuinfo | uniq | wc -l)"
     else
         echo "unsupport os type $os"
     fi
