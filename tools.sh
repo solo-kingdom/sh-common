@@ -24,12 +24,15 @@ os_type() {
 }
 
 get_cpu_num() {
-    os="$(os_type)"
-    if [[ "$os" == "darwin" ]]; then
-        echo "$(sysctl hw.logicalcpu | cut -d ' ' -f2)"
-    elif [[ "$os" == "linux" ]]; then 
-        echo "$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}')"
-    else
-        echo "unsupport os type $os"
-    fi
+    #os="$(os_type)"
+    #if [[ "$os" == "darwin" ]]; then
+    #    echo "$(sysctl hw.logicalcpu | cut -d ' ' -f2)"
+    #elif [[ "$os" == "linux" ]]; then 
+    #    echo "$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}')"
+    #else
+    #    echo "unsupport os type $os"
+    #fi
+
+    ([ "$(uname)" = 'Darwin' ] && sysctl -n hw.logicalcpu_max) || lscpu -p | grep -Evc '^#'
 }
+
