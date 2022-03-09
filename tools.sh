@@ -1,3 +1,5 @@
+BASE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
 # log
 info() {
   printf "%s - [INFO] %s\n" "$(date '+%Y-%m-%d %H:%M:%S')" "$*" >&2
